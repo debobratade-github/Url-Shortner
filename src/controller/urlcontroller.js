@@ -100,12 +100,12 @@ const geturl = async (req, res) => {
     let data = JSON.parse(cacheurl)
 
     if (cacheurl) {
-      res.redirect(data.longUr)
-      console.log("from catch")
+     return res.status(302).redirect(data.longUrl)
+      
     } else {
       let findurlcode = await urlModel.findOne({ urlCode: codeurl }).select({ urlCode: 0, _id: 0 });
       await SET_ASYNC(`${codeurl}`, JSON.stringify(findurlcode))
-      res.status(302).redirect(findurlcode.longUrl);
+     return res.status(302).redirect(findurlcode.longUrl);
     }
 
   } catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
