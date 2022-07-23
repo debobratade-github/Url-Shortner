@@ -12,7 +12,7 @@ const urlSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true
-    }, 
+    },
     urlCode: {
         type: String,
         required: true,
@@ -20,7 +20,7 @@ const urlSchema = new mongoose.Schema({
         lowercase: true,
         trim: true
     }
-},{timestamps:true})
+}, { timestamps: true })
 
 
-module.exports=mongoose.model("url",urlSchema)
+module.exports = mongoose.model("url", urlSchema)

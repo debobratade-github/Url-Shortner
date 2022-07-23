@@ -39,7 +39,7 @@ const SET_ASYNC = promisify(redisClient.SET).bind(redisClient);
 const GET_ASYNC = promisify(redisClient.GET).bind(redisClient);
 
 
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Api createurl >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Api Create Url >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 const createurl = async function (req, res) {
   try {
     let url = req.body
@@ -84,7 +84,7 @@ const createurl = async function (req, res) {
   } catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
 }
 
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Api=geturl >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Api Get Url >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 const geturl = async (req, res) => {
   try {
@@ -100,12 +100,12 @@ const geturl = async (req, res) => {
     let data = JSON.parse(cacheurl)
 
     if (cacheurl) {
-     return res.status(302).redirect(data.longUrl)
-      
+      return res.status(302).redirect(data.longUrl)
+
     } else {
       let findurlcode = await urlModel.findOne({ urlCode: codeurl }).select({ urlCode: 0, _id: 0 });
       await SET_ASYNC(`${codeurl}`, JSON.stringify(findurlcode))
-     return res.status(302).redirect(findurlcode.longUrl);
+      return res.status(302).redirect(findurlcode.longUrl);
     }
 
   } catch (err) { return res.status(500).send({ status: false, msg: err.message }) }
