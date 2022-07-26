@@ -1,3 +1,6 @@
+# Video Explanation of the solution code:
+https://drive.google.com/drive/folders/1Xai9eyr81FhxghqD1C_KMV-l5jjWG4hK?usp=sharing
+
 # Url-Shortner
 
 
